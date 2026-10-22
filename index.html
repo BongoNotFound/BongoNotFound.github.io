@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trend Radar · Roblox trends og spil-idéer</title>
+<meta name="description" content="Se hvilke Roblox spil der trender lige nu, find nye raketter og få spil-idéer baseret på rigtige tal.">
+<meta property="og:title" content="Trend Radar · Roblox trends">
+<meta property="og:description" content="Hvilke Roblox spil vokser lige nu? Find dit næste spil-idé.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📡%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#13112b;--bg2:#1b1840;--card:#211d4d;--card2:#2a2560;--line:#3a3480;
+  --text:#f4f2ff;--mute:#a49fd0;--dim:#6f69a8;
+  --pink:#ff5aa5;--cyan:#38e1ff;--gold:#ffc83d;--green:#4ff08a;--red:#ff5c6c;--purple:#a77bff;--orange:#ff9d3d;
+  --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:600 15px/1.45 Nunito,system-ui,sans-serif;min-height:100vh;
+  background-image:radial-gradient(900px 500px at 85% -10%,#3b1f6e55,transparent 70%),radial-gradient(700px 400px at -10% 10%,#0d4e6e44,transparent 70%)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header{padding:28px 0 8px}
+.brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{width:54px;height:54px;border-radius:16px;background:linear-gradient(145deg,var(--pink),var(--purple));display:grid;place-items:center;box-shadow:0 6px 0 #7a2c8f,0 10px 30px #ff5aa555;flex:none}
+.logo svg{width:34px;height:34px}
+h1{font:400 clamp(30px,6vw,44px)/1 'Lilita One',sans-serif;margin:0;letter-spacing:.5px;text-shadow:0 3px 0 #0008}
+h1 span{color:var(--cyan)}
+.sub{color:var(--mute);margin:4px 0 0;font-weight:700}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-weight:800;font-size:14px;display:flex;gap:6px;align-items:center}
+.pill b{color:var(--gold)}
+.live{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 #4ff08a99;animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px #4ff08a00}100%{box-shadow:0 0 0 0 #4ff08a00}}
+nav{position:sticky;top:0;z-index:20;background:#13112bee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-top:14px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:0;background:transparent;padding:9px 15px;border-radius:12px;font-weight:900;color:var(--mute);font-size:15px;white-space:nowrap}
+.tab:hover{color:var(--text);background:var(--card)}
+.tab.on{background:var(--text);color:var(--bg);box-shadow:0 4px 0 #8b86c9}
+main{padding:22px 0 60px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+h2{font:400 28px/1.1 'Lilita One',sans-serif;margin:0;letter-spacing:.3px}
+.hint{color:var(--mute);margin:4px 0 0;font-weight:700;max-width:640px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--card);padding:6px 12px;border-radius:999px;font-weight:800;font-size:13px;color:var(--mute)}
+.chip.on{background:var(--cyan);border-color:var(--cyan);color:#06222b}
+.list{display:flex;flex-direction:column;gap:8px}
+.row{display:grid;grid-template-columns:34px 58px 1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px 10px 10px;transition:transform .12s,border-color .12s;cursor:pointer;text-align:left;width:100%}
+.row:hover{transform:translateY(-2px);border-color:var(--purple)}
+.rank{font:400 20px 'Lilita One';color:var(--dim);text-align:center}
+.row:nth-child(1) .rank{color:var(--gold)}.row:nth-child(2) .rank{color:#d7dcf0}.row:nth-child(3) .rank{color:var(--orange)}
+.ico{width:58px;height:58px;border-radius:14px;background:var(--card2);object-fit:cover;display:block}
+.nm{font-weight:900;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{color:var(--mute);font-size:13px;display:flex;gap:8px;flex-wrap:wrap;margin-top:2px;align-items:center}
+.tag{background:var(--card2);border-radius:6px;padding:1px 7px;font-size:12px;font-weight:800;color:#cfcaf5}
+.tag.new{background:#ff5aa533;color:var(--pink)}
+.nums{display:flex;gap:14px;align-items:center;justify-content:flex-end}
+.num{text-align:right;min-width:62px}
+.num b{display:block;font-size:17px;font-weight:900}
+.num small{color:var(--dim);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.up{color:var(--green)}.down{color:var(--red)}.flat{color:var(--mute)}
+.spark{width:90px;height:34px}
+.min0{min-width:0}
+.empty{background:var(--card);border:2px dashed var(--line);border-radius:var(--r);padding:30px;text-align:center;color:var(--mute)}
+.note{background:#ffc83d18;border:1px solid #ffc83d55;color:#ffe3a1;border-radius:12px;padding:10px 14px;margin-bottom:14px;font-weight:700;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.genre{cursor:pointer;transition:border-color .12s}
+.genre:hover{border-color:var(--cyan)}
+.genre h3,.fmt h3{margin:0;font-weight:900;font-size:18px}
+.bar{height:10px;background:var(--bg2);border-radius:99px;overflow:hidden;margin:10px 0 8px}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--purple))}
+.kv{display:flex;justify-content:space-between;color:var(--mute);font-size:13px;font-weight:800}
+.kv b{color:var(--text)}
+.icons{display:flex;gap:6px;margin-top:12px}
+.icons img{width:36px;height:36px;border-radius:9px;background:var(--card2);cursor:pointer}
+.idea{background:linear-gradient(150deg,#3a1d6e,#1f2a6b);border:1px solid #6b55c9;border-radius:22px;padding:24px;position:relative;overflow:hidden;margin-bottom:22px}
+.idea:before{content:"";position:absolute;inset:-40% -10% auto auto;width:300px;height:300px;background:radial-gradient(circle,#ff5aa544,transparent 65%)}
+.idea .lbl{font-weight:900;color:var(--gold);text-transform:uppercase;letter-spacing:1px;font-size:12px}
+.idea h3{font:400 clamp(26px,5vw,38px)/1.1 'Lilita One',sans-serif;margin:8px 0 6px;position:relative}
+.idea .tw{font-size:17px;font-weight:800;color:#e3dcff;position:relative}
+.why{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;position:relative}
+.why li{background:#0006;border-radius:10px;padding:8px 12px;font-size:14px;font-weight:700}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;position:relative}
+.btn{border:0;border-radius:14px;padding:12px 18px;font-weight:900;font-size:15px;background:var(--gold);color:#3b2600;box-shadow:0 5px 0 #b3800f;transition:transform .08s}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #b3800f}
+.btn.alt{background:var(--card2);color:var(--text);box-shadow:0 5px 0 #15123a}
+.cloud{display:flex;flex-wrap:wrap;gap:8px}
+.cloud span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:5px 11px;font-weight:900}
+.search{width:100%;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 16px;color:var(--text);font:800 16px Nunito;outline:none}
+.search:focus{border-color:var(--cyan)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.tools .search{flex:1;min-width:220px}
+select{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:11px 12px;color:var(--text);font:800 15px Nunito}
+.modal{position:fixed;inset:0;background:#07061acc;backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:40px 16px;overflow-y:auto}
+.modal.open{display:flex}
+.sheet{background:var(--bg2);border:1px solid var(--line);border-radius:24px;max-width:620px;width:100%;padding:22px;position:relative;animation:pop .18s ease-out}
+@keyframes pop{from{transform:scale(.96);opacity:0}}
+.x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:12px;border:0;background:var(--card2);font-size:20px;font-weight:900}
+.top{display:flex;gap:16px;align-items:center;padding-right:40px}
+.top img{width:96px;height:96px;border-radius:20px;background:var(--card2);flex:none}
+.top h3{font:400 26px/1.1 'Lilita One',sans-serif;margin:0}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+.s{background:var(--card);border-radius:12px;padding:10px 12px}
+.s small{color:var(--dim);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.s b{display:block;font-size:18px;font-weight:900}
+.big-spark{width:100%;height:110px;background:var(--card);border-radius:14px;display:block}
+.desc{color:var(--mute);font-size:14px;white-space:pre-wrap;max-height:120px;overflow:auto;margin:14px 0 0}
+footer{color:var(--dim);text-align:center;padding:30px 16px;font-weight:700;font-size:13px}
+.hide{display:none!important}
+.sk{background:linear-gradient(90deg,var(--card) 25%,var(--card2) 50%,var(--card) 75%);background-size:200% 100%;animation:sk 1.2s infinite;border-radius:var(--r);height:80px}
+@keyframes sk{to{background-position:-200% 0}}
+@media (max-width:720px){
+  .row{grid-template-columns:44px 1fr auto;padding:10px}
+  .rank{display:none}
+  .ico{width:44px;height:44px;border-radius:11px}
+  .nums .num.opt,.spark{display:none}
+  .num{min-width:52px}.num b{font-size:15px}
+  .sgrid{grid-template-columns:repeat(2,1fr)}
+  .top img{width:72px;height:72px}
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="brand">
+    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="2.2" fill="#fff"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19 5a10 10 0 0 1 0 14M5 19A10 10 0 0 1 5 5"/></svg></div>
+    <div>
+      <h1>TREND <span>RADAR</span></h1>
+      <p class="sub">Se hvad der trender på Roblox og find dit næste spil-idé</p>
+    </div>
+  </div>
+  <div class="stats" id="stats"><span class="pill"><span class="live"></span>Henter data…</span></div>
+</header>
+
+<nav><div class="wrap tabs" id="tabs">
+  <button class="tab" data-t="trending">🔥 Trending</button>
+  <button class="tab" data-t="raketter">🚀 Raketter</button>
+  <button class="tab" data-t="perler">💎 Skjulte perler</button>
+  <button class="tab" data-t="genrer">📊 Genrer</button>
+  <button class="tab" data-t="ideer">💡 Idé-generator</button>
+  <button class="tab" data-t="alle">🔎 Alle spil</button>
+</div></nav>
+
+<main class="wrap" id="main">
+  <div class="list"><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
+</main>
+
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+
+<footer>Data fra Roblox · opdateres automatisk hver time · Lavet af BongoNotFound</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = n => n == null ? '–' : n >= 1e9 ? (n/1e9).toFixed(1).replace('.',',')+'B' : n >= 1e6 ? (n/1e6).toFixed(1).replace('.',',')+'M' : n >= 1e4 ? Math.round(n/1e3)+'K' : n >= 1e3 ? (n/1e3).toFixed(1).replace('.',',')+'K' : String(Math.round(n));
+const pct = v => v == null ? '<span class="flat">–</span>' : `<span class="${v > 0.5 ? 'up' : v < -0.5 ? 'down' : 'flat'}">${v > 0 ? '▲' : v < 0 ? '▼' : ''} ${Math.abs(v).toFixed(Math.abs(v) < 10 ? 1 : 0).replace('.',',')}%</span>`;
+const age = d => d == null ? '' : d < 1 ? 'i dag' : d < 2 ? '1 dag' : d < 60 ? Math.round(d)+' dage' : d < 730 ? Math.round(d/30)+' mdr' : Math.round(d/365)+' år';
+const ago = iso => { const m = Math.round((Date.now() - Date.parse(iso))/6e4); return m < 1 ? 'lige nu' : m < 60 ? `for ${m} min siden` : `for ${Math.round(m/60)} t siden`; };
+const NEW = 45;
+const PH = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10" fill="#2a2560"/></svg>');
+
+const params = new URLSearchParams(location.search);
+const owner = location.hostname.endsWith('github.io') ? location.hostname.split('.')[0] : 'BongoNotFound';
+const SRC = params.get('src') || `https://raw.githubusercontent.com/${owner}/${owner}.github.io/data/latest.json`;
+
+let D = null, G = {}, all = [];
+const st = { tab: 'trending', sort: 'top-trending', rk: 'playing', q: '', aq: 'playing', genre: '' };
+
+function spark(arr, w = 90, h = 34, fill = false) {
+  const pts = (arr || []).map((v, i) => [i, v]).filter(p => p[1] != null);
+  if (pts.length < 2) return `<svg class="spark" viewBox="0 0 ${w} ${h}"></svg>`;
+  const n = arr.length - 1 || 1, vs = pts.map(p => p[1]), lo = Math.min(...vs), hi = Math.max(...vs), r = hi - lo || 1;
+  const xy = pts.map(([i, v]) => [(i / n) * (w - 4) + 2, h - 3 - ((v - lo) / r) * (h - 6)]);
+  const d = xy.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('');
+  const upT = vs[vs.length - 1] >= vs[0];
+  const c = upT ? 'var(--green)' : 'var(--red)';
+  const area = fill ? `<path d="${d}L${xy[xy.length-1][0].toFixed(1)} ${h}L${xy[0][0].toFixed(1)} ${h}Z" fill="${c}" opacity=".15"/>` : '';
+  return `<svg class="${fill ? 'big-spark' : 'spark'}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">${area}<path d="${d}" fill="none" stroke="${c}" stroke-width="${fill ? 2.5 : 2}" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>`;
+}
+
+function row(g, i, extra) {
+  const isNew = g.ageDays != null && g.ageDays <= NEW;
+  const third = extra === 'vpd' ? `<div class="num opt"><b>${fmt(g.vpd)}</b><small>Besøg/dag</small></div>`
+    : extra === 'like' ? `<div class="num opt"><b>${g.like ?? '–'}%</b><small>Likes</small></div>`
+    : `<div class="num opt"><b>${pct(g.dPlay24)}</b><small>24 timer</small></div>`;
+  return `<button class="row" data-id="${g.id}">
+    <div class="rank">${i + 1}</div>
+    <img class="ico" loading="lazy" src="${esc(g.icon || PH)}" alt="" onerror="this.src='${PH}'">
+    <div class="min0"><div class="nm">${esc(g.clean || g.name)}</div>
+      <div class="meta">${g.genre ? `<span class="tag">${esc(g.genre)}</span>` : ''}${isNew ? `<span class="tag new">NY · ${age(g.ageDays)}</span>` : `<span>${age(g.ageDays)}</span>`}${g.like != null ? `<span>👍 ${String(g.like).replace('.',',')}%</span>` : ''}</div></div>
+    <div class="nums">${spark(g.spark)}${third}<div class="num"><b>${fmt(g.playing)}</b><small>Spiller nu</small></div></div>
+  </button>`;
+}
+
+const list = (arr, col) => arr.length ? `<div class="list">${arr.map((g, i) => row(g, i, col)).join('')}</div>` : `<div class="empty">Ingen spil her lige nu.</div>`;
+const histNote = () => D.hasHistory ? '' : `<div class="note">⏳ Vækst-tal (▲▼) kommer automatisk, når radaren har kørt i 24 timer.</div>`;
+
+const views = {
+  trending() {
+    const sorts = D.sorts.filter(s => s.ids.length);
+    if (!sorts.find(s => s.id === st.sort)) st.sort = sorts[0]?.id;
+    const s = sorts.find(s => s.id === st.sort);
+    const games = (s?.ids || []).map(id => G[id]).filter(Boolean);
+    return `<div class="sec-head"><div><h2>🔥 Trending lige nu</h2><p class="hint">${esc(s?.info || 'Roblox\' egne lister, opdateret hver time.')}</p></div></div>
+      <div class="chips" style="margin-bottom:14px">${sorts.map(x => `<button class="chip ${x.id === st.sort ? 'on' : ''}" data-sort="${esc(x.id)}">${esc(x.name)}</button>`).join('')}</div>
+      ${histNote()}${list(games.slice(0, 60))}`;
+  },
+  raketter() {
+    const k = st.rk;
+    const key = { playing: g => g.playing, growth: g => g.dPlay24 ?? -1e9, vpd: g => g.vpd ?? 0, score: g => g.score }[k] || (g => g.playing);
+    const games = all.filter(g => g.ageDays != null && g.ageDays <= NEW && g.playing > 50).sort((a, b) => key(b) - key(a));
+    return `<div class="sec-head"><div><h2>🚀 Raketter</h2><p class="hint">Nye spil (under ${NEW} dage gamle) der allerede har spillere. Det er her de bedste idéer gemmer sig, fordi de viser hvad der virker <i>lige nu</i>.</p></div>
+      <div class="chips">${[['playing','👥 Flest spillere'],['growth','📈 Hurtigst voksende'],['vpd','🎟️ Besøg pr. dag'],['score','⭐ Radar-score']].map(([v,t]) => `<button class="chip ${k===v?'on':''}" data-rk="${v}">${t}</button>`).join('')}</div></div>
+      ${histNote()}${list(games.slice(0, 80), k === 'vpd' ? 'vpd' : '')}`;
+  },
+  perler() {
+    const games = all.filter(g => g.like != null && g.like >= 88 && g.playing >= 300 && g.playing <= 20000 && (g.ageDays ?? 999) <= 180 && (g.up + g.down) >= 300)
+      .sort((a, b) => (b.like * Math.log10(b.playing)) - (a.like * Math.log10(a.playing)));
+    return `<div class="sec-head"><div><h2>💎 Skjulte perler</h2><p class="hint">Mindre, nyere spil som spillerne elsker (høj like-procent). Gode at studere, fordi de beviser at en idé er sjov, før den bliver kæmpe.</p></div></div>${list(games.slice(0, 60), 'like')}`;
+  },
+  genrer() {
+    const gs = D.genres.filter(g => g.name && g.players > 0);
+    const max = Math.max(...gs.map(g => g.players));
+    const sel = gs.find(g => g.name === st.genre);
+    return `<div class="sec-head"><div><h2>📊 Genrer</h2><p class="hint">Hvor er spillerne lige nu? "Nye spil" viser hvor mange der spiller spil under ${NEW} dage i genren. Klik på en genre for at se top-spillene.</p></div></div>
+      ${histNote()}
+      <div class="grid">${gs.map(g => `<div class="card genre" data-genre="${esc(g.name)}" style="${g.name === st.genre ? 'border-color:var(--cyan)' : ''}">
+        <div class="kv"><h3>${esc(g.name)}</h3><span>${pct(g.change24)}</span></div>
+        <div class="bar"><i style="width:${Math.max(2, g.players / max * 100)}%"></i></div>
+        <div class="kv"><span>Spillere</span><b>${fmt(g.players)} · ${String(g.share).replace('.',',')}%</b></div>
+        <div class="kv"><span>Nye spil</span><b>${g.newGames} spil · ${fmt(g.newPlayers)} spillere</b></div>
+        <div class="icons">${g.top.map(id => G[id]).filter(Boolean).map(x => `<img src="${esc(x.icon || PH)}" title="${esc(x.clean)}" data-id="${x.id}" onerror="this.src='${PH}'">`).join('')}</div>
+      </div>`).join('')}</div>
+      ${sel ? `<div style="margin-top:22px"><div class="sec-head"><h2>${esc(sel.name)}</h2>${sel.subs.length ? `<div class="chips">${sel.subs.map(s => `<span class="chip">${esc(s.name)} · ${fmt(s.players)}</span>`).join('')}</div>` : ''}</div>${(list(all.filter(g => (g.genre || 'Ukendt') === sel.name).sort((a, b) => b.playing - a.playing).slice(0, 30)))}</div>` : ''}`;
+  },
+  ideer() {
+    const fm = D.formats.slice(0, 12);
+    const maxF = Math.max(1, ...fm.map(f => f.newPlayers + f.players * .3));
+    return `<div class="idea" id="idea"></div>
+      <div class="sec-head"><div><h2>🧩 Hotteste spil-formater</h2><p class="hint">Hvilke "opskrifter" bruger de spil der vokser? Sorteret efter spillere i nye spil.</p></div></div>
+      <div class="grid">${fm.map((f, i) => `<div class="card fmt">
+        <div class="kv"><h3>${i < 3 ? ['🥇','🥈','🥉'][i] + ' ' : ''}${esc(f.name)}</h3></div>
+        <div class="bar"><i style="width:${Math.max(3, (f.newPlayers + f.players * .3) / maxF * 100)}%;background:linear-gradient(90deg,var(--gold),var(--pink))"></i></div>
+        <div class="kv"><span>I nye spil</span><b>${f.newGames} spil · ${fmt(f.newPlayers)}</b></div>
+        <div class="kv"><span>I alt</span><b>${f.games} spil · ${fmt(f.players)}</b></div>
+        <div class="icons">${f.examples.map(id => G[id]).filter(Boolean).map(x => `<img src="${esc(x.icon || PH)}" title="${esc(x.clean)}" data-id="${x.id}" onerror="this.src='${PH}'">`).join('')}</div>
+      </div>`).join('')}</div>
+      ${D.keywords.length ? `<div class="sec-head" style="margin-top:26px"><div><h2>🔤 Hotte ord i nye spil</h2><p class="hint">Ord der går igen i navnene på nye spil, størst = flest spillere.</p></div></div>
+      <div class="cloud">${(() => { const mx = Math.max(...D.keywords.map(k => k.players)); return D.keywords.slice(0, 32).map(k => `<span style="font-size:${13 + Math.sqrt(k.players / mx) * 15}px">${esc(k.word)} <small style="color:var(--dim)">${fmt(k.players)}</small></span>`).join(''); })()}</div>` : ''}`;
+  },
+  alle() {
+    const k = st.aq;
+    const key = { playing: g => g.playing, growth: g => g.dPlay24 ?? -1e9, newest: g => -(g.ageDays ?? 1e9), like: g => g.like ?? 0, visits: g => g.visits }[k];
+    const q = st.q.trim().toLowerCase();
+    const games = all.filter(g => !q || (g.name + ' ' + g.creator + ' ' + g.genre + ' ' + g.sub).toLowerCase().includes(q)).sort((a, b) => key(b) - key(a));
+    return `<div class="sec-head"><div><h2>🔎 Alle spil</h2><p class="hint">Alle ${all.length} spil radaren holder øje med.</p></div></div>
+      <div class="tools"><input class="search" id="q" placeholder="Søg på navn, genre eller udvikler…" value="${esc(st.q)}" autocomplete="off">
+      <select id="aq">${[['playing','Flest spillere'],['growth','Mest vækst'],['newest','Nyeste'],['like','Bedst likes'],['visits','Flest besøg']].map(([v,t]) => `<option value="${v}" ${v===k?'selected':''}>${t}</option>`).join('')}</select></div>
+      <div id="alist">${list(games.slice(0, 100), k === 'like' ? 'like' : '')}</div>`;
+  }
+};
+
+const THEMES = ['Volcano','Candy','Space','Ice','Jungle','Ghost','Pizza','Ninja','Robot','Pirate','Slime','Lava','Cloud','Ocean','Haunted','Castle','Zombie','Banana','Dragon','Crystal','Moon','Sushi','Tornado','Magnet','Toilet','Dino','Neon','Galaxy','Cookie','Desert'];
+const OBJ = ['Egg','Brainrot','Car','Pet','Crystal','Rocket','Dragon','Potato','Ice Cube','Pizza','Robot','Trophy','Gem','Sword','Sofa','Shark','Duck','Meteor','Chest','Burger','Balloon','Magnet','Cactus','Snowman'];
+const STAT = ['Speed','Jump','Size','Strength','Wings','Height','Arm','Tongue','Magnet','Gravity'];
+const VERB = ['Break','Crack','Smash','Peel','Melt','Drill','Kick','Slice'];
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const TPL = {
+  '+1 ___': () => `+1 ${pick(STAT)} ${pick(THEMES)} Escape`,
+  'Steal a ___': () => `Steal a ${pick(OBJ)}`,
+  'Build a ___': () => `Build a ${pick(THEMES)} ${pick(['Empire','Base','Tower','Machine','Kingdom','Factory'])}`,
+  'Grow a ___': () => `Grow a ${pick(OBJ)}`,
+  '___ Simulator': () => `${pick(OBJ)} Simulator`,
+  '___ Tycoon': () => `${pick(OBJ)} Factory Tycoon`,
+  '___ RNG': () => `${pick(OBJ)} RNG`,
+  'Obby': () => `${pick(THEMES)} Obby`,
+  'Break / Smash ___': () => `${pick(VERB)} the Giant ${pick(OBJ)}`,
+  'Clean all the ___': () => `Clean all the ${pick(OBJ)}s`,
+  'Ride / Drive ___': () => `Ride a ${pick(OBJ)}`,
+  'Guess the ___': () => `Guess the ${pick(OBJ)}`,
+  'Survive ___': () => `Survive the ${pick(THEMES)} ${pick(['Storm','Apocalypse','Monster','Flood'])}`,
+  'X Days / Nights': () => `${pick([7, 30, 99, 100])} Nights in the ${pick(THEMES)}`,
+  'Eggs': () => `${pick(VERB)} ${pick(THEMES)} Eggs`,
+  'Pets': () => `${pick(THEMES)} Pet Hunt`,
+  'Fishing': () => `Fish in the ${pick(THEMES)}`,
+  'Horror': () => `Escape the Haunted ${pick(OBJ)}`,
+  'Farm / Garden': () => `${pick(THEMES)} Farm`,
+  'Mine / Dig': () => `Dig to the ${pick(THEMES)}`,
+  'Escape': () => `Escape the ${pick(THEMES)} ${pick(['Prison','School','Factory','Island'])}`,
+  'Tower Defense': () => `${pick(OBJ)} Tower Defense`,
+  'Duels / 1v1': () => `${pick(OBJ)} Duels`,
+  'Battlegrounds': () => `${pick(THEMES)} Battlegrounds`
+};
+const TWIST = [
+  () => `…men du kan stjæle fra andre spillere`,
+  () => `…med pets der hjælper dig`,
+  () => `…hvor du kan blive kæmpestor`,
+  () => `…med en boss hvert 10. minut`,
+  () => `…men gulvet bliver til lava hvert minut`,
+  () => `…med rebirth der gør dig hurtigere`,
+  () => `…med et leaderboard for hele serveren`,
+  () => `…med sjældne ${pick(OBJ)}s der kun spawner om natten`,
+  () => `…hvor alt er lavet af ${pick(THEMES).toLowerCase()}`,
+  () => `…med RNG-æg du åbner for bedre gear`,
+  () => `…men verden bliver mindre hele tiden`,
+  () => `…som man kan spille 2 sammen`
+];
+function newIdea() {
+  const pool = D.formats.filter(f => TPL[f.name]).slice(0, 10);
+  if (!pool.length) return;
+  const w = pool.map(f => Math.sqrt(f.newPlayers * 3 + f.players + 1));
+  let r = Math.random() * w.reduce((a, b) => a + b, 0), f = pool[0];
+  for (let i = 0; i < pool.length; i++) { r -= w[i]; if (r <= 0) { f = pool[i]; break; } }
+  const title = TPL[f.name]();
+  const twist = pick(TWIST)();
+  const growG = [...D.genres].filter(g => g.change24 != null && g.players > 3000).sort((a, b) => b.change24 - a.change24)[0];
+  const ex = f.examples.map(id => G[id]).filter(Boolean);
+  const why = [
+    `🧩 Formatet <b>${esc(f.name)}</b> har ${fmt(f.players)} spillere lige nu${f.newGames ? `, heraf ${fmt(f.newPlayers)} i ${f.newGames} nye spil` : ''}.`,
+    ex[0] ? `🎮 Kendte eksempler: ${ex.slice(0, 3).map(x => `<a href="#" data-id="${x.id}" style="text-decoration:underline">${esc(x.clean)}</a>`).join(', ')}.` : '',
+    growG ? `📈 Genren <b>${esc(growG.name)}</b> vokser ${String(growG.change24).replace('.',',')}% det sidste døgn.` : ''
+  ].filter(Boolean);
+  const el = $('#idea');
+  if (!el) return;
+  el.dataset.text = `💡 Spil-idé fra Trend Radar: "${title}" ${twist.replace('…', '')}`;
+  el.innerHTML = `<div class="lbl">💡 Idé-generator · baseret på rigtige tal</div><h3>${esc(title)}</h3><div class="tw">${esc(twist)}</div>
+    <ul class="why">${why.map(x => `<li>${x}</li>`).join('')}</ul>
+    <div class="btns"><button class="btn" id="roll">🎲 Ny idé</button><button class="btn alt" id="copy">📋 Kopier</button></div>`;
+}
+
+function render() {
+  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b.dataset.t === st.tab));
+  $('#main').innerHTML = views[st.tab]();
+  if (st.tab === 'ideer') newIdea();
+}
+
+function openGame(id) {
+  const g = G[id]; if (!g) return;
+  const rk = D.sorts.flatMap(s => { const i = s.ids.indexOf(String(id)); return i >= 0 ? [`<span class="chip">#${i + 1} ${esc(s.name)}</span>`] : []; });
+  $('#sheet').innerHTML = `<button class="x" id="x" aria-label="Luk">✕</button>
+    <div class="top"><img src="${esc(g.icon || PH)}" alt="" onerror="this.src='${PH}'"><div class="min0"><h3>${esc(g.clean || g.name)}</h3>
+    <div class="meta" style="margin-top:6px">${g.creator ? `<span>af <b style="color:var(--text)">${esc(g.creator)}</b>${g.verified ? ' ✔️' : ''}</span>` : ''}${g.genre ? `<span class="tag">${esc(g.genre)}</span>` : ''}${g.sub ? `<span class="tag">${esc(g.sub)}</span>` : ''}</div></div></div>
+    <div class="sgrid">
+      <div class="s"><small>Spiller nu</small><b>${fmt(g.playing)}</b></div>
+      <div class="s"><small>Vækst 24t</small><b>${pct(g.dPlay24)}</b></div>
+      <div class="s"><small>Likes</small><b>${g.like != null ? String(g.like).replace('.',',') + '%' : '–'}</b></div>
+      <div class="s"><small>Besøg</small><b>${fmt(g.visits)}</b></div>
+      <div class="s"><small>Besøg/dag</small><b>${fmt(g.vpd)}</b></div>
+      <div class="s"><small>Favoritter</small><b>${fmt(g.fav)}</b></div>
+      <div class="s"><small>Alder</small><b>${age(g.ageDays) || '–'}</b></div>
+      <div class="s"><small>Sidst opdateret</small><b>${g.updated ? age((Date.now() - Date.parse(g.updated)) / 864e5) : '–'}</b></div>
+      <div class="s"><small>Max/server</small><b>${g.maxPlayers ?? '–'}</b></div>
+    </div>
+    <div style="font-weight:900;margin-bottom:6px">Spillere de sidste 48 timer</div>
+    ${spark(g.spark, 600, 110, true)}
+    ${rk.length ? `<div class="chips" style="margin-top:14px">${rk.join('')}</div>` : ''}
+    ${g.desc ? `<p class="desc">${esc(g.desc)}</p>` : ''}
+    <div class="btns"><a class="btn" href="https://www.roblox.com/games/${esc(g.place)}" target="_blank" rel="noopener">▶ Åbn på Roblox</a></div>`;
+  $('#modal').classList.add('open');
+}
+const closeModal = () => $('#modal').classList.remove('open');
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-t],[data-sort],[data-rk],[data-genre],[data-id],#roll,#copy,#x');
+  if (!t) { if (e.target.id === 'modal') closeModal(); return; }
+  if (t.id === 'x') return closeModal();
+  if (t.id === 'roll') return newIdea();
+  if (t.id === 'copy') { const txt = $('#idea').dataset.text; navigator.clipboard?.writeText(txt).then(() => { t.textContent = '✅ Kopieret'; setTimeout(() => t.textContent = '📋 Kopier', 1500); }); return; }
+  if (t.dataset.t) { location.hash = t.dataset.t; return; }
+  if (t.dataset.sort) { st.sort = t.dataset.sort; return render(); }
+  if (t.dataset.rk) { st.rk = t.dataset.rk; return render(); }
+  if (t.dataset.id) { e.preventDefault(); return openGame(t.dataset.id); }
+  if (t.dataset.genre) { st.genre = st.genre === t.dataset.genre ? '' : t.dataset.genre; render(); if (st.genre) setTimeout(() => window.scrollBy({ top: 300, behavior: 'smooth' }), 30); }
+});
+document.addEventListener('input', e => {
+  if (e.target.id === 'q') { st.q = e.target.value; const tmp = document.createElement('div'); tmp.innerHTML = views.alle(); $('#alist').innerHTML = tmp.querySelector('#alist').innerHTML; }
+});
+document.addEventListener('change', e => { if (e.target.id === 'aq') { st.aq = e.target.value; render(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+window.addEventListener('hashchange', () => { const h = location.hash.slice(1); if (views[h]) { st.tab = h; render(); window.scrollTo({ top: 0 }); } });
+
+async function load() {
+  try {
+    const r = await fetch(SRC + (SRC.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 3e5), { cache: 'no-store' });
+    if (!r.ok) throw new Error(r.status);
+    D = await r.json();
+  } catch (e) {
+    $('#stats').innerHTML = '';
+    $('#main').innerHTML = `<div class="empty"><h2>📡 Ingen data endnu</h2><p>Radaren har ikke hentet data endnu. Den kører automatisk hver time, så kig forbi lidt senere.</p></div>`;
+    return;
+  }
+  G = D.games; all = Object.values(G);
+  $('#stats').innerHTML = `<span class="pill"><span class="live"></span>Opdateret ${ago(D.updated)}</span>
+    <span class="pill">👥 <b>${fmt(D.totals.players)}</b> spillere tracket</span>
+    <span class="pill">🎮 <b>${D.totals.games}</b> spil</span>
+    <span class="pill">🚀 <b>${D.totals.newGames}</b> nye spil</span>`;
+  const h = location.hash.slice(1);
+  if (views[h]) st.tab = h;
+  render();
+}
+load();
+</script>
+</body>
+</html>
