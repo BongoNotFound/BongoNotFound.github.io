@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       post:
-        description: 'Post til Discord nu'
+        description: 'Post to Discord now'
         type: boolean
         default: false
 
@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Hent gammel data
+      - name: Load previous data
         run: |
           if git fetch --depth=1 origin data:data 2>/dev/null; then
             git worktree add prev data
@@ -36,13 +36,13 @@ jobs:
             mkdir -p prev
           fi
 
-      - name: Hent Roblox data
+      - name: Fetch Roblox data
         run: node fetch.mjs prev out
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           FORCE_POST: ${{ inputs.post }}
 
-      - name: Gem data
+      - name: Save data
         working-directory: out
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
