@@ -1,0 +1,56 @@
+name: Trend Radar
+
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch:
+    inputs:
+      post:
+        description: 'Post til Discord nu'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trend-radar
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Hent gammel data
+        run: |
+          if git fetch --depth=1 origin data:data 2>/dev/null; then
+            git worktree add prev data
+          else
+            mkdir -p prev
+          fi
+
+      - name: Hent Roblox data
+        run: node fetch.mjs prev out
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          FORCE_POST: ${{ inputs.post }}
+
+      - name: Gem data
+        working-directory: out
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git init -q
+          git checkout -q -b data
+          git config user.name "trend-radar"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "data"
+          git push -qf "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" data
